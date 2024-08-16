@@ -15,7 +15,7 @@ describe('Functionality Products Page', () => {
       .click()
   });
 
-  it.only('Deve adicionar um produto ao carrinho', () => {
+  it('Deve adicionar um produto ao carrinho', () => {
     var amount = 2
 
     cy.get('[class="product-block grid"]')
@@ -32,6 +32,10 @@ describe('Functionality Products Page', () => {
 
     cy.get('.dropdown-toggle > .mini-cart-items').should('contain', amount)
     cy.get('.woocommerce-message').should('contain', amount + ' × “Atlas Fitness Tank” foram adicionados no seu carrinho.')
+  });
+
+  it.only('Deve adicionar um produto ao carrinho usando Comandos Customizados', () => {
+    cy.addProducts('Atlas Fitness Tank', 'M', 'Blue', 3)
   });
   
 });

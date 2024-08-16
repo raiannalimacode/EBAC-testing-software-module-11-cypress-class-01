@@ -8,7 +8,7 @@ describe('Functionality pre-register', () => {
     cy.visit('minha-conta')
   });
   
-  it('Deve completar o pré cadastro com sucesso', () => {
+  it('Deve completar o pré-cadastro com sucesso', () => {
     let firstNameFaker = faker.person.firstName()
     let lastNameFaker = faker.person.lastName()
     let emailFaker = faker.internet.email(firstNameFaker)
@@ -23,4 +23,11 @@ describe('Functionality pre-register', () => {
     cy.get('.woocommerce-Button').click()
     cy.get('.woocommerce-message').should('contain','Detalhes da conta modificados com sucesso.')
   });
+
+  it.only('Deve completar o pré-cadastro com sucesso usando Comandos Customizados', () => {
+    let emailFaker2 = faker.internet.email()
+    cy.register(emailFaker2, 'senha!@#forte', 'Fabio', 'Araujo')
+    cy.get('.woocommerce-message').should('contain','Detalhes da conta modificados com sucesso.')
+  });
+
 });
